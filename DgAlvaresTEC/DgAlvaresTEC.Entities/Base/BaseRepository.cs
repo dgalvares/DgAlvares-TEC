@@ -19,9 +19,9 @@ namespace DgAlvaresTEC.Entities.Base
     /// <typeparam name="T"></typeparam>
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        protected readonly HmpContext _context;
+        protected readonly AppDbContext _context;
 
-        public BaseRepository(HmpContext context)
+        public BaseRepository(AppDbContext context)
         {
 
             _context = context;
@@ -94,13 +94,13 @@ namespace DgAlvaresTEC.Entities.Base
         /// <param name="query"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public async Task<List<OracleParameter>> ExecWithStoreProcedure(string query, List<OracleParameter> parameters)
-        {
+        //public async Task<List<OracleParameter>> ExecWithStoreProcedure(string query, List<OracleParameter> parameters)
+        //{
 
-            var sql = await _context.Database.ExecuteSqlRawAsync(query, parameters);
-            return parameters.Where(x => x.Direction == ParameterDirection.Output).ToList();
+        //    var sql = await _context.Database.ExecuteSqlRawAsync(query, parameters);
+        //    return parameters.Where(x => x.Direction == ParameterDirection.Output).ToList();
 
-        }
+        //}
 
         public async Task<PagedCollection<T>> ListarAsync(PageQueryString pagina, Expression<Func<T, bool>> filtro, Expression<Func<T, object>> ordernarPor,
             Expression<Func<T, object>> ordernarSecPor = null, string direcao = "ASC", params string[] associacoes)
